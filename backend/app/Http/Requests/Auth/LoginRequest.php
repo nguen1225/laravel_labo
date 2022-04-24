@@ -58,6 +58,7 @@ class LoginRequest extends FormRequest
 
     /**
      * Ensure the login request is not rate limited.
+     * パスワードを10回間違えると1分待機
      *
      * @return void
      *
@@ -65,7 +66,7 @@ class LoginRequest extends FormRequest
      */
     public function ensureIsNotRateLimited()
     {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 10)) {
             return;
         }
 
