@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VitalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,9 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::group(['prefix' => '/vital'], static function (): void {
+    Route::get('/', [VitalController::class, 'index'])->middleware(['auth'])->name('vital.index');
+});
 
 require __DIR__.'/auth.php';

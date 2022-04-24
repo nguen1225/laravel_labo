@@ -5,8 +5,9 @@
     "Forgot your password?": "パスワードをお忘れですか？",
     "Remember me": "パスワードを保存する",
     "Name": "名前",
-    "Confirm Password":"パスワードの確認",
-    "Already registered?":"登録済ですか？",
-    "Register":"登録",
-    "Dashboard":"ラボ"
+    "Confirm Password": "パスワードの確認",
+    "Already registered?": "登録済ですか？",
+    "Register": "登録",
+    "Dashboard": "ラボ",
+    "Vital": "バイタル"
 }
