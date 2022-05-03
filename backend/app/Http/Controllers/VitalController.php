@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vital;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VitalController extends Controller
 {
@@ -27,14 +28,27 @@ class VitalController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * 身体機能保存処理
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+
+        Vital::query()->create([
+            'user_id'            => $user->id,
+            'title'              => $request->title,
+            'content'            => $request->content,
+            'height'             => $request->height,
+            'body_weight'        => $request->body_weight,
+            'heart_rate'         => $request->heart_rate,
+            'min_blood_pressure' => $request->min_blood_pressure,
+            'max_blood_pressure' => $request->max_blood_pressure,
+            'registered_at'      => $request->registered_at
+        ]);
+
+        return redirect()->route('vital.index');
     }
 
     /**

@@ -22,8 +22,16 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::group(['prefix' => '/vital'], static function (): void {
-    Route::get('/', [VitalController::class, 'index'])->middleware(['auth'])->name('vital.index');
+//Route::group(['prefix' => '/vital'], static function (): void {
+//    Route::get('/', [VitalController::class, 'index'])->middleware(['auth'])->name('vital.index');
+//    Route::post('/', [VitalController::class, 'create'])->middleware(['auth'])->name('vital.create');
+//});
+
+Route::group(['prefix' => '/vital', 'middleware' => 'auth'], static function (): void {
+    Route::controller(VitalController::class)->group(function () {
+        Route::get('/', 'index')->name('vital.index');
+        Route::post('/', 'store')->name('vital.create');
+    });
 });
 
 require __DIR__.'/auth.php';
