@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Repositories\VitalRepository;
 use App\Models\Vital;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class VitalController extends Controller
 {
+    private VitalRepository $vitalRepository;
+    public function __construct(VitalRepository $vitalRepository)
+    {
+        $this->vitalRepository = $vitalRepository;
+    }
+
     /**
      * バイタル画面
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
@@ -34,19 +41,7 @@ class VitalController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
-
-        Vital::query()->create([
-            'user_id'            => $user->id,
-            'title'              => $request->title,
-            'content'            => $request->content,
-            'height'             => $request->height,
-            'body_weight'        => $request->body_weight,
-            'heart_rate'         => $request->heart_rate,
-            'min_blood_pressure' => $request->min_blood_pressure,
-            'max_blood_pressure' => $request->max_blood_pressure,
-            'registered_at'      => $request->registered_at
-        ]);
+        $this->vitalRepository->store($request);
 
         return redirect()->route('vital.index');
     }
