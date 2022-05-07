@@ -33,7 +33,7 @@ class VitalController extends Controller
      */
     public function create()
     {
-        //
+        return dd(Auth::user());
     }
 
     /**
@@ -56,7 +56,7 @@ class VitalController extends Controller
      */
     public function show(Vital $vital)
     {
-        //
+        return dd(Auth::user());
     }
 
     /**
@@ -67,7 +67,7 @@ class VitalController extends Controller
      */
     public function edit(Vital $vital)
     {
-        //
+        return dd(Auth::user());
     }
 
     /**
@@ -79,7 +79,7 @@ class VitalController extends Controller
      */
     public function update(Request $request, Vital $vital)
     {
-        //
+        return dd(Auth::user());
     }
 
     /**
@@ -90,6 +90,6 @@ class VitalController extends Controller
      */
     public function destroy(Vital $vital)
     {
-        //
+        return dd(Auth::user());
     }
 }
