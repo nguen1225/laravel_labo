@@ -16,10 +16,10 @@ class VitalRepository
      */
     public function store($request)
     {
-        $user = Auth::user();
+        $current_user = Auth::user();
 
         return Vital::query()->create([
-            'user_id'            => $user->id,
+            'user_id'            => $current_user->id,
             'title'              => $request->title,
             'content'            => $request->content,
             'height'             => $request->height,

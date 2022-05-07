@@ -21,7 +21,9 @@ class VitalController extends Controller
      */
     public function index()
     {
-        return view('vital.index');
+        $current_user = Auth::user();
+        $vital_records = Vital::query()->where('user_id', $current_user->id)->get();
+        return view('vital.index', compact('vital_records'));
     }
 
     /**

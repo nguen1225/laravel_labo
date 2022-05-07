@@ -20,4 +20,7 @@ class Vital extends Model
         'max_blood_pressure',
         'registered_at'
     ];
+
+//    日付フォーマットを変換する
+    protected $dates = ['registered_at'];
 }
